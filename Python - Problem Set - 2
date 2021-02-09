@@ -1,0 +1,27 @@
+def control(a):
+    count = 0
+    for harf in a:
+        if harf == '@':
+            count = count + 1
+
+    if count == 1:
+        return True
+    else:
+        return False
+
+karakterler = "ABCDEFGHIJKLMNOPQRSTUVWYZabcdefghijklmnoprstuvywz_-"
+count2 = 0
+uzantı = "edu"
+uzunluk = len(uzantı)
+if uzunluk <= 3:
+    count2 = count2 + 1
+if count2 == 1:
+    return True
+else:
+    return False
+
+mail = input('Mail : ')
+if control(mail) == True:
+    print('True')
+else:
+    print('False')
