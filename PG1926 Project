@@ -1,0 +1,122 @@
+import os
+import platform
+
+global listStd
+listOgrenci = ["Ali", "Ayşenur", "Cem", "Burak", "Gizem", "Elif", "Sude", "Azra"]
+listOgretmen = ["Doğancan Mavideniz", "Toprak Koç", "Emrah Nalcı", "Onurcan Karaman", "Cihad Arı"]
+listDers = ["Python", "PHP", "CSS", "HTML", "JS", "Veri Tabanı", "Web Servisleri"]
+def manageStudent():
+
+	x = "#" * 30
+	y = "=" * 28
+	global by
+	by = " ===> Güle Güle <=== "
+
+
+	print(""" 
+
+  ------------------------------------------------------
+ |======================================================| 
+ |=========== Hayalindeki Okula Hoşgeldin ==============|
+ |======================================================|
+  ------------------------------------------------------
+
+Enter 1 : Öğrenci Listesini Görüntüle 
+Enter 2 : Yeni Öğrenci Ekle 
+Enter 3 : Öğrenci Ara 
+Enter 4 : Öğrenci Sil
+Enter 5 : Dersleri Görüntüle
+Enter 6 : Ders Ekle
+Enter 7 : Ders Sil
+Enter 8 : Öğretmen Listesini Görüntüle
+		
+		""")
+
+	try:
+		userInput = int(input("Lütfen istediğiniz seçeneğin numarasını giriniz: "))
+	except ValueError:
+		exit("\n Böyle bir numara yok !!")
+	else:
+		print("\n")
+
+
+	if(userInput == 1):
+		print("Öğrenci Listesi: \n")
+		for ogrenciler in listOgrenci:
+			print("=> {}".format(ogrenciler))
+
+	elif(userInput == 2):
+		newOgrenci = input("Yeni Öğrenci İsmi Giriniz: ")
+		if(newOgrenci in listOgrenci):
+			print("\nBu Öğrenci {} Zaten Listede Mevcut".format(newOgrenci))
+		else:	
+			listOgrenci.append(newOgrenci)
+			print("\n=> New Student {} Successfully Add \n".format(newOgrenci))
+			for ogrenciler in listOgrenci:
+				print("=> {}".format(ogrenciler))
+
+	elif(userInput == 3):
+		srcStd = input("Aramak istediğiniz öğrencinin ismini giriniz: ")
+		if(srcStd in listOgrenci):
+			print("\n=> Öğrenci mevcut {}".format(srcStd))
+		else:
+			print("\n=> Öğrenci mevcut değil {}".format(srcStd))
+
+	elif(userInput == 4):
+		rmStd = input("Silmek İstediğiniz Öğrenci: ")
+		if(rmStd in listOgrenci):
+			listOgrenci.remove(rmStd)
+			print("\n=> Student {} Successfully Deleted \n".format(rmStd))
+			for ogrenciler in listOgrenci:
+				print("=> {}".format(ogrenciler))
+		else:
+			print("\n=> Bu isimde bir öğrenci kayıtlı değil {}".format(rmStd))
+
+	elif(userInput == 5):
+		print("Ders Listesi: \n")
+		for dersler in listDers:
+			print("=> {}".format(dersler))
+
+	elif(userInput == 6):
+		newDers = input("Yeni Dersin İsmini Giriniz: ")
+		if(newDers in listDers):
+			print("\nBu Ders {} Zaten Listede Mevcut".format(newDers))
+		else:
+			listDers.append(newDers)
+			print("\n=> Yeni Ders {} Başarıyla Eklendi \n".format(newDers))
+			for dersler in listDers:
+				print("=> {}".format(dersler))
+
+	elif(userInput == 7):
+		rmD = input("Silmek İstediğiniz Ders: ")
+		if (rmD in listDers):
+			listDers.remove(rmD)
+			print("\n=> Ders {} Başarıyla Silindi \n".format(rmD))
+			for dersler in listDers:
+				print("=> {}".format(dersler))
+		else:
+			print("\n=> Bu isimde bir ders mevcut değil {}".format(rmD))
+
+	elif(userInput == 8):
+		print("Öğretmen Listesi: \n")
+		for ogretmenler in listOgretmen:
+			print("=> {}".format(ogretmenler))
+	elif(userInput < 1 or userInput > 4):
+		print("Lütfen geçerli numaralardan giriniz..")
+						
+
+manageStudent()
+
+def runAgain():
+	runAgn = input("\nMenüyü Tekrar Görüntülemek İstiyor musunuz? Evet/Hayır: ")
+	if(runAgn.lower() == 'evet'):
+		if(platform.system() == "Windows"):
+			print(os.system('cls')) 
+		else:
+			print(os.system('clear'))
+		manageStudent()
+		runAgain()
+	else:
+		quit(by)
+
+runAgain()
